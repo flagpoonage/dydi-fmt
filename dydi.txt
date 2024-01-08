@@ -1,0 +1,48 @@
+File in little endian
+
+File Header
+
+4 magic bytes
+DYDI -> Magic bytes in ASCII
+68, 89, 68, 73
+
+4 bytes -> 32 bit integer
+	Number: Days since Jan 1st 1900
+
+Question Headers
+
+4 bytes -> Question End Byte Position
+[until end bytes position] -> UTF-8 encoded bytes of question
+
+Terminates with 4 bytes of zero -> 00000000000000000000000000000000
+
+Day listing
+
+8 bytes 
+First 2 bits = 00
+Remaining bits seperated into 2 bit questions
+
+First bit T/F answered?
+Second bit T/F answer?
+
+-> Little endian 0 indexed
+	-> 2-bits per question
+	-> First bit is T/F answered?
+	-> Second bit is T/F answer?
+
+4 bytes -> Listing for the day
+	Question
+
+Example
+
+68,89,68,73, - DYDI
+0,0,33,13, - 8641 days since Jan 1 1900
+0,0,0,36, - Question ends at 36 bytes
+68,105,100,32,121,111,117,32,103,101,116,32,101,110,111,117,103,104,32,115,108,101,101,112
+- Question is "Did you get enough sleep" in UTF-8
+0,0,0,0 - Terminates question section
+0,0,0,0,0,0,0,3 - Day setting 0000....0011 - First question, answered T, answer T
+
+
+
+Asdqwe.txt
