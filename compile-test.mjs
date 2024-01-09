@@ -1,3 +1,4 @@
+import fs from "fs/promises";
 // DYDI Bytes
 const MAGIC_HEADER = new Uint8Array([68, 89, 68, 73]);
 
@@ -30,11 +31,7 @@ async function makeDydi(options) {
     );
   }
 
-  console.log(dydi_byte_buffer);
-
-  const b = new Blob([dydi_byte_buffer], {});
-
-  console.log("BB", b, await b.text());
+  return dydi_byte_buffer;
 }
 
 function getAnswerBytes(answers, totalLength) {
@@ -96,9 +93,12 @@ function getNumericBytes(num) {
   return new Uint8Array(arr);
 }
 
-makeDydi({
+const curr = new Date();
+const date = new Date(Date.UTC(2000, 0, 1, 0, 0, 0));
+
+const dydi = await makeDydi({
   questions: [
-    "Did you get enough sleep",
+    "Did you get enough sleep 😄",
     "Are you the coolest person in the world",
     "Are you feeling sick",
     "Did you excercise",
@@ -110,3 +110,7 @@ makeDydi({
     [3, NO, YES, NO, YES, YES],
   ],
 });
+
+fs.writeFile("test.dydi", dydi, { encoding: "utf-8" });
+
+console.log("Done");

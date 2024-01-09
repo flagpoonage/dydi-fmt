@@ -36,7 +36,7 @@ Second bit T/F answer?
 Example
 
 68,89,68,73, - DYDI
-0,0,33,13, - 8641 days since Jan 1 1900
+0,0,33,13, - 8641 days since Jan 1 2000
 0,0,0,36, - Question ends at 36 bytes
 68,105,100,32,121,111,117,32,103,101,116,32,101,110,111,117,103,104,32,115,108,101,101,112
 - Question is "Did you get enough sleep" in UTF-8
